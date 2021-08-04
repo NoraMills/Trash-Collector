@@ -11,3 +11,16 @@ def index(request):
     # This line will get the Customer model from the other app, it can now be used to query the db for Customers
     Customer = apps.get_model('customers.Customer')
     return render(request, 'employees/index.html')
+
+
+def create(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        user = request.user
+        zipcode = request.POST.get('zipcode')
+
+        new_employee = Employee(name=name, user=user, zipcode=zip)
+        new_employee.save()
+        return index(request)
+    else:
+        return render(request, 'employees/create.html')
