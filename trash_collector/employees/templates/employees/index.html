@@ -5,7 +5,35 @@
 {% block content %}
   {% if user.is_authenticated %}
     Hello Employee {{ user.username }}!
+   
+    
+  <h1>Customer List</h1>
+  
+    <table class="table table-bordered table-striped>
+      <thead title="Customers">
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Zipcode</th>
+          <th>Customer Pickup Day</th>
+          <th>Onetime Pickup</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for Customer in customer %}
+      <tr>
+          <td>{{ Customer.name }}</td>
+          <td>{{ Customer.address }}</td>
+          <td>{{ Customer.zip_code }}</td>
+          <td>{{ Customer.weekly_pickup_day }}</td>
+          <td>${{ Customer.onetime_pickup }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+  </table>
+
   {% else %}
+    
     <p>You are at the employee index, but you are not logged in.</p>
     <a href="{% url 'login' %}">Log In</a>
     <a href="{% url 'accounts:register' %}">Sign Up</a>
