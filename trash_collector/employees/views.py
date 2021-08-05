@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.apps import apps
+from .models import Employee
 
 # Create your views here.
 
@@ -24,3 +25,10 @@ def create(request):
         return index(request)
     else:
         return render(request, 'employees/create.html')
+
+def confirmpickup(request):
+    user = request.user
+    if request.method == 'POST':
+        confirmed = request.POST.get('confirmed')
+    else:
+        return render(request, 'employees/confirmpickup.html')

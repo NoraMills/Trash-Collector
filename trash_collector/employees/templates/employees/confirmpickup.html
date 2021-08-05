@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %} Confirm pickup  {% endblock %}
+
+{% block header %} Confirm Pickup  {% endblock %}
+
+{% block content %}
+
+<form action="{% url 'employees:confirmpickup' %}" method="post">
+    {% csrf_token %} 
+    Confirm Pickup: <input type="text" name="confirmed">
+</form>
+
+
+{% endblock %}  
